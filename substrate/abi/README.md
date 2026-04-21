@@ -1,6 +1,6 @@
 # Serai ABI
 
-Serai's Application Binary Interface (ABI), defining the protocol underlying
+Serai's Application Binary Interface (ABI) defines the protocol underlying
 the Serai blockchain. This includes the transaction, event, and block types.
 
 This crate is published under the MIT license to ensure it is widely usable.
@@ -20,7 +20,7 @@ For higher-level crates, please refer to
 Serai's blockchain is built on top of
 [Substrate](https://github.com/paritytech/polkadot-sdk). This is considered an
 implementation detail. The intent with this crate is to ensure complete control
-over the blockchain's definition so in the future, if desired, the entire
+over the blockchain's definition so that, if desired in the future, the entire
 Substrate framework could be replaced _without_ having to replicate any APIs or
 definitions from Substrate.
 
