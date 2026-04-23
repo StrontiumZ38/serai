@@ -24,29 +24,29 @@ rules programmed into them when they were spawned.
 
 The individuals running nodes can be presumed to still have interest in
 continuing the blockchain. To do so, they may download an alternative node with
-distinct consensus rules, including the removal of the rule which prevents
+distinct consensus rules, including the removal of the rule that prevents
 building on top of the existing blockchain. When the network was retired, such
 a rule set should have been signaled in favor of. Individuals are not required
-to adopt this rule set however, and may run any software of their choice to
+to adopt this rule set, however, and may run any software of their choice to
 enter into any social covenants of their choosing. The only decision expressed
 here was to retire the existing consensus rules, as allowed by and encoded into
 the protocol from the start.
 
 With this in mind, the on-chain upgrade functionality frequently seen with
 projects built with Substrate is not present within Serai. There is no
-individual, council, or even decentralized entity which can unilaterally change
-the Serai protocol's definition. All nodes will always run with the rules
-programmed into them, any changes only by the individual running the node
-replacing the node software themselves. This is to ensure the network's
-decentralization, and with it, its security.
+individual, council, or even decentralized entity that can unilaterally change
+the Serai protocol's definition. By design, all nodes are expected to run with the rules
+contained in the Serai source code. Any changes that occur would thus be by alteration of
+release software by the individual running the node. This is intended to help ensure the network's
+decentralization, and with it, its security. See Notices and Disclaimers §§3-4.
 
 ### Signal Lifetime
 
 A signal to halt a network is implicitly and always considered alive.
 Retirement signals live until the end of the latest-decided Serai session.
 Expressed favor for a signal to halt an external network also expires after the
-end of the latest-decided Serai session however, preventing historic favor
-which may have been forgotten about being used to carry a vote to halt an
+end of the latest-decided Serai session, however, preventing historic favor,
+which may have been forgotten about, being used to carry a vote to halt an
 external network in the future.
 
 Regarding expired retirement signals and favors, ideally nodes would be able to
@@ -63,7 +63,7 @@ attempting to prune expired values is omitted from this pallet.
 
 With each favoring of a signal, the favor within a network is tallied from
 scratch, enacting a computational cost linear to the amount of validators for a
-network (which is bounded to a constant). Then, if the network is in favor is
+network (which is bounded to a constant). Then, whether the network is in favor is
 recorded, and if so, the list of networks' recorded values is iterated over.
 This causes a total of `v + n` operations to occur, where `v` is the amount of
 validators within a network and `n` is the amount of networks, instead of
