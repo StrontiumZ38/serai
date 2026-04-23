@@ -15,7 +15,7 @@ reproduction and verification. To achieve this, _most_ aspects of the host's
 environment (environment variables, `cargo`/`rustc` configuration, etc.) are
 dropped. It is not possible to configure the WASM blob's build via traditional
 methods as it is not intended to be modified in any manner. Certain
-configuration values are carried however, notably any environment variables
+configuration values are carried over, notably any environment variables
 tuning `cargo`'s networking (allowing compilation of `serai-runtime` even when
 a proxy is mandated via setting `CARGO_HTTP_PROXY` and alike).
 
@@ -29,7 +29,7 @@ comments within `build.rs`. For the canonical build process, please refer to
 blob, as configured for the compilation of the WASM blob. This is due to
 `clippy` (internally) wrapping `rustc` and the build script deferring to
 whichever `rustc` `cargo` resolved as _the_ `rustc` to actually use. This does
-mean `clippy` invokes the build script which invokes `clippy` however, causing
+mean `clippy` invokes the build script which invokes `clippy`, causing
 the inner `clippy`'s output to be _swallowed by the build script_.
 
 It is recommended accordingly to lint the runtime with
@@ -39,7 +39,7 @@ print the output of the build script (and its `clippy` process).
 
 ### API Stubs
 
-For architectures which aren't `wasm32v1-none`, the `serai-runtime`
+For architectures that aren't `wasm32v1-none`, the `serai-runtime`
 functionality is effectively entirely stubbed. While certain APIs are defined
 and implemented for `RuntimeApi`, they will panic as unimplemented if called.
 They only exist to declare an API contract for the WASM blob.
