@@ -2,7 +2,7 @@
 
 ### Integration Notes
 
-This pallet defines a [`frame_support::traits::PreInherents`] hook which the
+This pallet defines a [`frame_support::traits::PreInherents`] hook that the
 runtime MUST incorporate.
 
 ### Audit Status
