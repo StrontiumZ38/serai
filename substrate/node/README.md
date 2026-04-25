@@ -19,12 +19,12 @@ offered by the Substrate SDK are not defined or exposed. Instead, Serai offers
 its own RPC methods. Finally, [`sc-cli`](https://docs.rs/sc-cli/0.57.0/sc_cli/)
 is not used. Serai defines its own CLI and method of operating the node.
 
-All of these are in order for Serai to completely own the interface around its
-node, with not only full control but also insight into how operation occurs.
+All of these decisions are intended to allow Serai to completely control the interfaces around its
+node while retaining full operational insight.
 While `serai-abi` justifies itself in order to provide an efficient, clear
 representation of the Serai protocol, `sc-cli` was forsaken due to how it
-handles what resolves as hundreds of lines of configuration values. While that
-makes it easy to use, and an accessible approach to defer to, it also hinders
+handles what resolves as hundreds of lines of configuration values. That
+makes it easy to use, and an accessible approach to defer to, but also hinders
 review and consideration of those values. While Serai is now responsible and
 liable to correctly perform configuration, Serai is also aware of all the
 configuration to perform.
@@ -34,7 +34,7 @@ Anecdotally, this same ideology is also why Serai discontinued usage of
   https://docs.rs/substrate-wasm-builder/31.1.0/substrate_wasm_builder/
 ). While Serai now maintains its own
 [non-trivial build script](../runtime/build), it provides complete clarity
-into the build process, avoids bugs which were present in
+into the build process, avoids bugs that were present in
 `substrate-wasm-builder`, and has the specific functionality Serai desires
 (such as host-independent reproducible builds).
 
@@ -64,7 +64,7 @@ completely accurate, description of `serai-node`'s CLI, please defer to
   public networks.
 
 Additionally, when operating as a validator, the node expects the validator's
-identity, Serai auxiliary key to be provided via [`serai-env`](../../env) (or
+identity and Serai auxiliary key to be provided via [`serai-env`](../../env) (or
 via the selection of a pre-defined validator identity). This with the `ADDRESS`
 and `KEY` environment variables, expecting bech32m- and hex- encoded values
 respectively.
