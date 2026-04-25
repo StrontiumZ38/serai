@@ -7,7 +7,7 @@ This pallet corresponds to the
 
 This will call [`serai_dex_pallet::Pallet::take_burnt_fees`] and assumes itself
 to be the sole entity to do so. It does so within an
-[`frame_support::traits::PreInherents`] hool which the caller _MUST_ ensure is
+[`frame_support::traits::PreInherents`] hook that the caller _MUST_ ensure is
 part of [`serai_core_pallet::Config::PreInherents`].
 
 ### Audit Status
