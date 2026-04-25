@@ -4,7 +4,7 @@
 the Serai protocol. The logic itself should be familiar to anyone with
 experience with the [ERC-20 token standard](
   https://github.com/ethereum/ercs/blob/8358b94b5ed4009473cb4c3040d9bba60e7bb786/ERCS/erc-20.md
-), as an account-based token protocol with `supply`, `balance`, and `transfer`
+) as an account-based token protocol with `supply`, `balance`, and `transfer`
 functions, and an event on transfer (though lacking 'approvals'). Within the
 Serai runtime, it's used where other runtimes would frequently use
 [`pallet-balances`](https://docs.rs/pallet-balances) or
@@ -50,7 +50,7 @@ subset `coin: ExternalCoin`, corresponding to a liquidity pool (as each
 external coin has a single liquidity pool, `SRI-sriEXT`). This is why
 `Coin::Serai` would be a nonsensical argument for these other instances, as
 it'd be referring to a `SRI-SRI` liquidity pool. This isn't a strict
-requirement inherited from/assumed by `serai-coins-pallet`, solely an
+requirement inherited from/assumed by `serai-coins-pallet`, only an
 observable practice which demonstrates how the common core of
 `serai-coins-pallet` is interpreted and presented across different uses.
 
@@ -62,7 +62,7 @@ provided to burn coins with an
 
 ### Configuration
 
-Each instance may be configured with [`AllowMint`], a `trait` which determines
+Each instance may be configured with [`AllowMint`], a `trait` that determines
 if a mint should be allowed or not. This is intended to be composed with
 Serai's economic security design to limit the amount of liquidity present on
 the network to be proportional to the relevant validators' stake.
