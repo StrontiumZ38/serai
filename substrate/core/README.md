@@ -1,8 +1,8 @@
 # Serai Core Pallet
 
-This pallet serves a similar role as
-[`frame-system`](https://docs.rs/frame-system) does within the Substrate
-ecosystem. Specifically, `serai-core-pallet` manages the most basic of account
+This pallet serves a similar role to
+[`frame-system`](https://docs.rs/frame-system) within the Substrate
+ecosystem. Specifically, `serai-core-pallet` manages the most basic element of account
 state (nonces), events, the limits on a block's size, and the transaction/block
 execution flow.
 
@@ -42,7 +42,7 @@ the
 ) trait (which Serai's transactions implement and engage with).
 
 Notably, Serai transactions do _NOT_ use the transaction extension framework
-nor _any_ of the transaction extensions provided in `frame-system`. While
+or _any_ of the transaction extensions provided in `frame-system`. While
 Serai offers equivalent functionality to
 [`CheckGenesis`](
   https://docs.rs/frame-system/45.0.0/frame_system/struct.CheckGenesis.html
@@ -71,8 +71,8 @@ _requires_
 ) and
 [`frame_system::pallet::Config::BlockLength`](
   https://docs.rs/frame-system/45.0.0/frame_system/pallet/trait.Config.html#associatedtype.BlockLength
-) be set to Serai's core pallet's [`Limits`], ensuring distinct weights (which
-would have no actual effect) aren't attempted to be used.
+) be set to Serai's core pallet's [`Limits`], ensuring no attempt is made to use distinct weights as they
+would have no actual effect.
 
 ### Events
 
@@ -86,7 +86,7 @@ variants are defined:
 This defers to `frame-system` while achieving the additional functionality of
 considering events as localized to a transaction.
 
-This is an implementation detail, as prior stated. For how these are exposed,
+This is an implementation detail, as previously stated. For how these are exposed,
 please refer to [`serai-abi`] (specifically,
 [`serai_abi::HeaderV1::events_commitment`]) or Serai's RPC.
 
@@ -97,12 +97,11 @@ At the start of each block, a transaction will be executed with a 'hash' of
 [`PreInherents`](
   https://docs.rs/frame-support/45.0.0/frame_support/traits/trait.PreInherents.html
 ) hooks as required since events _MUST_ be emitted within the context of a
-transaction (and a `PreInherents` hook may perform an action which emits an
-event). While these hashes are not the output of a cryptographic hash
-algorithm, to find a collision would require colliding with the extensive
-amount of leading zeroes, accordingly still requiring greater than 128 bits of
-work (assuming the block number is less than 128 bits) to find a collision with
-the output from a secure cryptographic hash algorithm.
+transaction (and a `PreInherents` hook may perform an action that emits an
+event). While these hashes are not the output of a cryptographic hash algorithm, finding
+a collision with the output from a secure cryptographic hash algorithm would require colliding
+with the extensive number of leading zeros, and would still require greater than 128 bits of work
+(assuming the block number is less than 128 bits).
 
 To ensure that all `PreInherents` hooks are executed within these wrappers,
 `serai-core-pallet` requires `frame-system` be configured to have its
@@ -135,11 +134,11 @@ instead (in order to ensure the weight doesn't exceed the block's limit).
 There is also the
 [`Hooks`](
   https://docs.rs/frame-support/45.0.0/frame_support/traits/trait.Hooks.html
-) trait which every pallet implements
+) trait, which every pallet implements
 ([`frame-support`](https://docs.rs/frame-support) providing the default
 implementation if hooks aren't explicitly defined), which `frame-executive`
 will invoke. Hooks _MUST NOT_ emit a Serai event and _SHOULD NOT_ be used. They
-are supported however, primarily as constraining them is infeasible without
+are supported, however, primarily as constraining them is infeasible without
 replacing `frame-executive`. This is unfortunate as the `Hooks` trait
 guarantees execution, not allowing the runtime to forget to specify their
 execution, and allows declaring the
@@ -190,8 +189,8 @@ ensure it was set within each block (automatically invoked via
 `frame-executive` regardless of configuration, if `pallet-timestamp` is
 included in the runtime definition used with `frame-executive`). This ensures
 congruence with the Substrate ecosystem and allows the checks defined within
-`pallet-timestamp` to be enforced. Note the _user_ is responsible for creating,
-and validating, the timestamp within the header. The
+`pallet-timestamp` to be enforced. Note the _user_ is responsible for creating
+and validating the timestamp within the header. The
 [`check_inherent`](
   https://docs.rs/pallet-timestamp/44.0.0/pallet_timestamp/pallet/struct.Pallet.html#method.check_inherent
 ) function is _NOT_ invoked by `serai-core-pallet`.
@@ -204,7 +203,7 @@ populate a header.
 
 `serai-core-pallet` implements [`serai_abi::TransactionContext`], as necessary
 to enable the verification and execution of [`serai_abi::Transaction`], but
-also defining the primary interface for `serai-core-pallet`. This is part of
+also to define the primary interface for `serai-core-pallet`. This is part of
 the abstraction over the underlying methodology (such as `pallet-timestamp`).
 In order to be able to implement `TransactionContext`,
 [`frame_system::pallet::Config::Hash`](
