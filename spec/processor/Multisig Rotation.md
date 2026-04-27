@@ -17,7 +17,7 @@ The following timeline is established:
    We don't use the last `Batch`'s external network block, as that `Batch` may
    be older than `WINDOW_LENGTH` blocks. Any yet-to-be-included-and-finalized
    `Batch` will be within `WINDOW_LENGTH` blocks of what any processor has
-   scanned however, as it'll wait for inclusion and finalization before
+   scanned, as it will wait for inclusion and finalization before
    continuing scanning.
 
 2) Once the "activation block" itself has been finalized on Serai, UIs should
@@ -31,7 +31,7 @@ The following timeline is established:
    to the shorter chain, it'd no longer be after the "activation block" and
    accordingly would be ignored.
 
-   We could not wait for Serai to finalize the block, yet instead wait for the
+   We could not wait for Serai to finalize the block, so instead wait for the
    block to have `CONFIRMATIONS` confirmations. This would prevent needing to
    wait for an indeterminate amount of time for Serai to finalize the
    "activation block", with the knowledge it should be finalized. Doing so would
@@ -46,51 +46,51 @@ The following timeline is established:
    when `Batch`s are so delayed and continued transactions are a risk. While
    `2 * CONFIRMATIONS` is presumably well within the 6 hour period (defined
    below), that period exists for low-fee transactions at time of congestion. It
-   does not exist for UIs with old state, though it can be used to compensate
+   does not exist for UIs with an old state, though it can be used to compensate
    for them (reducing the tolerance for inclusion delays). `2 * CONFIRMATIONS`
    is before the 6 hour period is enacted, preserving the tolerance for
    inclusion delays, yet still should only happen under highly abnormal
    circumstances.
 
    In order to minimize the time it takes for "activation block" to be
-   finalized, a `Batch` will always be created for it, regardless of it would
+   finalized, a `Batch` will always be created for it, regardless of whether it would
    otherwise have a `Batch` created.
 
-3) The prior multisig continues handling `Batch`s and `Burn`s for
-   `CONFIRMATIONS` blocks, plus 10 minutes, after the "activation block".
+3) The prior multisig continues handling `Batch`s and `Burn`s for a transition period of
+   `CONFIRMATIONS` blocks plus 10 minutes after the "activation block".
 
-   The first `CONFIRMATIONS` blocks is due to the fact the new multisig
-   shouldn't actually be sent coins during this period, making it irrelevant.
+   The initial `CONFIRMATIONS`-blocks portion of the transition period exists because the new multisig
+   shouldn't be sent coins during this period, making the new multisig temporarily irrelevant.
    If coins are prematurely sent to the new multisig, they're artificially
-   delayed until the end of the `CONFIRMATIONS` blocks plus 10 minutes period.
+   delayed until the end of the `CONFIRMATIONS` blocks plus 10 minutes transition period.
    This prevents an adversary from minting Serai tokens using coins in the new
-   multisig, yet then burning them to drain the prior multisig, creating a lack
+   multisig, but then burning them to drain the prior multisig, creating a lack
    of liquidity for several blocks.
 
-   The reason for the 10 minutes is to provide grace to honest UIs. Since UIs
+   The additional 10-minute portion of the waiting period provides grace to honest UIs. UIs
    will wait until Serai confirms the "activation block" for keys before sending
-   to them, which will take `CONFIRMATIONS` blocks plus some latency, UIs would
-   make transactions to the prior multisig past the end of this period if it was
-   `CONFIRMATIONS` alone. Since the next period is `CONFIRMATIONS` blocks, which
+   to the new multisig. Because confirmations require `CONFIRMATIONS` blocks plus some latency, UIs would
+   make transactions to the prior multisig past the end of this `CONFIRMATIONS`-block period if it was
+   `CONFIRMATIONS` alone. Since the next period is another `CONFIRMATIONS` blocks, which
    is how long transactions take to confirm, transactions made past the end of
-   this period would only received after the next period. After the next period,
+   this period would only be received after the next period. After the next period,
    the prior multisig adds fees and a delay to all received funds (as it
    forwards the funds from itself to the new multisig). The 10 minutes provides
    grace for latency.
 
-   The 10 minutes is a delay on anyone who immediately transitions to the new
-   multisig, in a no latency environment, yet the delay is preferable to fees
+   The additional 10 minutes imposes a delay on anyone who immediately transitions to the new
+   multisig, in a no-latency environment, but the delay is preferable to fees
    from forwarding. It also should be less than 10 minutes thanks to various
    latencies.
 
-4) The prior multisig continues handling `Batch`s and `Burn`s for another
+4) The previous multisig continues handling `Batch`s and `Burn`s for another
    `CONFIRMATIONS` blocks.
 
    This is for two reasons:
 
    1) Coins sent to the new multisig still need time to gain sufficient
       confirmations.
-   2) All outputs belonging to the prior multisig should become available within
+   2) All outputs belonging to the previous multisig should become available within
       `CONFIRMATIONS` blocks.
 
    All `Burn`s handled during this period should use the new multisig for the
@@ -115,22 +115,22 @@ The following timeline is established:
    transaction with one explicitly included. On such failure, the refund would
    be immediately issued instead.
 
-6) Once the 6 hour period has expired, the prior multisig stops handling outputs
-   it didn't itself create. Any remaining `Eventuality`s are completed, and any
+6) Once the 6-hour period has expired, the previous multisig stops handling outputs
+   it did not itself create. Any remaining `Eventuality`s are completed, and any
    available/freshly available outputs are forwarded (creating new
-   `Eventuality`s which also need to successfully resolve).
+   `Eventuality`s that also need to successfully resolve).
 
-   Once all the 6 hour period has expired, no `Eventuality`s remain, and all
-   outputs are forwarded, the multisig publishes a final `Batch` of the first
-   block, plus `WINDOW_LENGTH`, which met these conditions, regardless of if it
-   would've otherwise had a `Batch`. No further actions by it, nor its
-   validators, are expected (unless, of course, those validators remain present
+   Once the entire 6-hour period has expired, no `Eventuality`s remain, and all
+   outputs are forwarded, then the multisig publishes a final `Batch` of the first
+   block, plus `WINDOW_LENGTH`, which met these conditions, regardless of whether it
+   would've otherwise had a `Batch`. No further actions by it or its
+   validators are expected (unless, of course, those validators remain present
    in the new multisig).
 
 7) The new multisig confirms all transactions from all prior multisigs were made
    as expected, including the reported `Batch`s.
 
-   Unfortunately, we cannot solely check the immediately prior multisig due to
+   Unfortunately, we cannot solely check the immediately previous multisig due to
    the ability for two sequential malicious multisigs to steal. If multisig
    `n - 2` only transfers a fraction of its coins to multisig `n - 1`, multisig
    `n - 1` can 'honestly' operate on the dishonest state it was given,
@@ -147,24 +147,24 @@ The following timeline is established:
    applied to each received output (preventing a griefing attack). Any balance
    greater than the tokens' supply may have had funds skimmed off the top, yet
    they'd still guarantee the solvency of Serai without any additional fees
-   passed to users. Unfortunately, due to the requirement to verify the `Batch`s
-   published (as else the Serai tokens' supply may be manipulated), this cannot
+   passed to users. Unfortunately, due to the requirement to verify the published `Batch`s
+   (as otherwise the Serai tokens' supply may be manipulated), this cannot
    actually be achieved (at least, not without a ZK proof the published `Batch`s
    were correct).
 
 8) The new multisig publishes the next `Batch`, signifying the accepting of full
-   responsibilities and a successful close of the prior multisig.
+   responsibilities and a successful close of the previous multisig.
 
 ### Latency and Fees
 
-Slightly before the end of step 3, the new multisig should start receiving new
+Shortly before the end of step 3, the new multisig should start receiving new
 external outputs. These won't be confirmed for another `CONFIRMATIONS` blocks,
 and the new multisig won't start handling `Burn`s for another `CONFIRMATIONS`
 blocks plus 10 minutes. Accordingly, the new multisig should only become
 responsible for `Burn`s shortly after it has taken ownership of the stream of
 newly received coins.
 
-Before it takes responsibility, it also should've been transferred all internal
+Before it takes responsibility, the new multisig also should've been transferred all internal
 outputs under the standard scheduling flow. Any delayed outputs will be
 immediately forwarded, and external stragglers are only reported to Serai once
 sufficiently confirmed in the new multisig. Accordingly, liquidity should avoid
@@ -172,6 +172,6 @@ fragmentation during rotation. The only latency should be on the 10 minutes
 present, and on delayed outputs, which should've been immediately usable, having
 to wait another `CONFIRMATIONS` blocks to be confirmed once forwarded.
 
-Immediate forwarding does unfortunately prevent batching inputs to reduce fees.
-Given immediate forwarding only applies to latent outputs, considered
+Immediate forwarding has the drawback of preventing batching inputs to reduce fees.
+Given immediate forwarding only applies to latent outputs, which are considered
 exceptional, and the protocol's fee handling ensures solvency, this is accepted.
