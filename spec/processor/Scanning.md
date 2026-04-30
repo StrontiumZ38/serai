@@ -14,7 +14,7 @@ individually, though only once finalized. This allows networks that reach
 finalization erratically to not have to agree on when finalizations were formed,
 only that the blocks contained have a finalized descendant.
 
-### Conditions causing a `Batch`
+### Conditions Causing a `Batch`
 
 `Batch`s are only created for blocks where achieving ordering is beneficial.
 These are:
@@ -23,7 +23,7 @@ These are:
 - Blocks in which a new multisig activates
 - Blocks in which a prior multisig retires
 
-### Waiting for `Batch` inclusion
+### Waiting for `Batch` Inclusion
 
 Once a `Batch` is created, it is expected to eventually be included on Serai.
 If the `Batch` isn't included within `CONFIRMATIONS` blocks of its creation, the
