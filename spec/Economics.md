@@ -2,25 +2,25 @@
 
 The economics of the Serai codebase are delineated into two different eras:
 
-1) Pre-economic security.
+1) Pre-economic security
 
    Any validator set has yet to achieve economic security.
 
-2) Post-economic security.
+2) Post-economic security
 
     All validator sets have achieved economic security.
 
 These two eras have vastly different considerations and accordingly each have
-their own set of rules. They both occur _after_ the protocol's genesis, which
-can be itself considered its own era if one desires to but is not here.
+their own set of rules. They both occur _after_ the protocol's genesis—which
+can itself be considered its own era, but is excluded here.
 
-Note for the entirety of this document, one day is considered as exactly 24
+Note that for the entirety of this document, one day is considered to be exactly 24
 hours.
 
 ## Genesis
 
-At genesis, a set of genesis nodes (presumably community leaders sufficiently
-trusted) will start the network. They will perform a DKG and publish the initial
+At genesis, a set of genesis nodes (presumably sufficiently
+trusted community leaders) will start the network. These genesis nodes will perform a DKG and publish the initial
 addresses for Serai (over Bitcoin, Ethereum, and Monero) to receive coins with
 (BTC, ETH, DAI, and XMR, further referred to with indifference as XYZ).
 
@@ -33,18 +33,18 @@ Over `GENESIS_LIQUIDITY_TIME`, any user will be able to provide XYZ. At the end
 of `GENESIS_LIQUIDITY_TIME`, the validators will oraclize the value of 1 XYZ
 in terms of 0.00000001 BTC (except for BTC). With the value of `sriXYZ`
 considered equivalent to the value of `XYZ`, the value of each pool is
-determined. `GENESIS_SRI` is proportionately distributed.
+thus determined, and `GENESIS_SRI` is proportionately distributed.
 
 With the SRI distributed to the pools, the required amount of SRI for a
 validator set to be considered as economically secure can be calculated (as
 detailed in following sections). The amount of SRI which must be allocated for
 a key share is determined such that for `g` genesis validators,
 `(((2 * g) + 1) * allocation_per_key_share) > economic_security_requirement`.
-This ensures at least one genesis validator is require to participate in every
+This ensures at least one genesis validator is required to participate in every
 signing operation until the network is economically secure. It is potentially
 excessive in that liquidity may be added to a pool during genesis, then removed
 pre-economic security, without the allocation per key share value decreasing
-proportionately however. This is accepted as an oddity.
+proportionately, however. This is accepted as an oddity.
 
 Genesis is now complete. Allocating stake and swaps become available.
 
@@ -62,23 +62,23 @@ to fees) and accordingly isn't considered exogenous.
 
 Exogenous SRI has four possible sources:
 
-1) Circulating SRI.
+1) Circulating SRI
 
     There will be no emissions of SRI during this era which aren't immediately
     allocated as stake.
 
-2) Removed liquidity.
+2) Removed liquidity
 
     All liquidity removed during this era will burn the SRI airdropped to it in
     order to form the liquidity position.
 
-3) Removed stake.
+3) Removed stake
 
-    Due to the lack of unused capacity in the economic security, there is an
-    inability to unstake SRI. If any individual network has achieved unused
-    capacity, unstaking still is not allowed so long as any network has yet to.
+    Due to the lack of unused capacity in the economic security, SRI cannot be unstaked.
+    If any individual network has achieved unused capacity, unstaking is still
+    not allowed so long as any remaining network has yet to achieve unused capacity.
 
-4) Intra-pool SRI movement.
+5) Intra-pool SRI movement
 
     For coins sriXYZ, sriABC, the sriXYZ pool may `+sriXYZ, -SRI`. This enables
     `+SRI, -sriABC` in the sriABC pool. To resolve this, each pool tracks
@@ -108,7 +108,7 @@ liquidity they provided.
 
 This policy, combined with the lack of emissions and fees to liquidity
 providers in the pre-economic security era, leaves the incentive for liquidity
-provides as the airdropped SRI.
+providers as the airdropped SRI.
 
 ### Emissions
 
@@ -127,18 +127,18 @@ SERAI_VALIDATORS_STAKE_DESIRED = SERAI_VALIDATORS_DESIRED_PERCENTAGE * STAKE_DES
 SECURE_BY = 365 days
 ```
 
-During the pre-Economic Security era, the block reward from genesis till the
+During the pre-economic security era, the block reward from genesis till the
 end of `INITIAL_PERIOD` is fixed to `INITIAL_REWARD`. During this time, the
 Serai validators receive exactly
 `SERAI_VALIDATORS_DESIRED_PERCENTAGE * INITIAL_REWARD` while the validators for
-external networks split the rest proportional to their distance to economic
+external networks split the remainder proportional to their distance to economic
 security.
 
 After the initial period, the block reward is defined as
 `DISTANCE_TO_ECONOMIC_SECURITY / blocks_until(SECURE_BY)`. This intends to
 ensure economic security by (approximately) the specified date. While achieving
 economic security by minting SRI as emissions is undesirable, the amount so
-minted is a function of the (lack of) interested in staking. For the Serai
+minted is a function of the (lack of) interest in staking. For the Serai
 validator set, which does not have a literal evaluation of
 `DISTANCE_TO_ECONOMIC_SECURITY` available, `SERAI_VALIDATORS_STAKE_DESIRED` is
 used as the value required to be considered economically secure.
@@ -153,35 +153,35 @@ GENESIS_TRICKLE_FEED = 180 days
 
 Liquidity may be added as the capacity allows.
 
-When genesis liquidity is removed, whereas prior the provider would not receive
-additional sriXYZ nor airdropped SRI, they may now receive
+When genesis liquidity is removed, the provider receives
 `days_since_economic_security().min(GENESIS_TRICKLE_FEED) / GENESIS_TRICKLE_FEED`
-of the additional sriXYZ/airdropped SRI.
+of the additional sriXYZ/airdropped SRI, whereas previously the provider would receive
+no such rewards.
 
 ### Addition of Coins
 
 While liquidity may only be added as per the capacity in the economic security,
 this leaves the minting of coins undiscussed. The goal of Serai, in general, is
 to always allow minting coins as necessary to perform swaps and ensure the
-pools' quotes are consistent (which requires the ability to add, remove
+pools' quotes are consistent (which requires the ability to add and remove
 liquidity, interact with external entities, and perform swaps). Unfortunately,
 the ability for a malicious validator set to arbitrarily mint sriEXT would
 allow them to drain the corresponding liquidity pool of its SRI. This offers a
 profit incentive of approximately twice the value of the external coins in the
-liquidity pool, despite economic security being calculated regarded solely the
-value of the external coins in the pool.
+liquidity pool, even though economic security is calculated based solely on the
+value of those coins.
 
 To mitigate this, once a network has achieved economic security, the minting of
 _any_ external coins is only allowed so long as the associated validator set is
 able to provide security for them _sans additional buffer_. This also means
 additional liquidity will be rejected before minting of coins at all is
 rejected, allowing swaps to continue to be enabled even when adding liquidity
-is no longer.
+no longer is.
 
 This does mean, for a validator set whose economic security has low capacity,
 floating coins (coins added to the network but outside of a liquidity pool) can
 further endanger the economic security. To this end, it's left to the
-participants who added coins to perform their own considerations of risk and
+participants who have added coins to perform their own risk assessment and
 remove them per their evaluation.
 
 As a malicious validator set who does arbitrarily mint sriEXT to swap for SRI
@@ -191,14 +191,14 @@ of time.
 
 Distinctly, two side effects can be noted:
 
-- The potential inability to add coins, to swap to them to SRI, enacts a
+- The potential inability to add coins, to swap them to SRI, enacts a
   circuit breaker such that the radical decline in value for a coin may not be
   recognizable on the Serai network.
 
 - An adversary who pays the opportunity cost of adding coins to Serai, and
   bears the associated risk, is able to tie up capacity _without_ performing a
   service such as providing liquidity. This is unfortunate but accepted for the
-  time being, where a network which is unable to fulfill its purpose can be
+  time being, given that a network which is unable to fulfill its purpose can be
   retired in favor of a new ruleset, as possible via Signals.
 
 ### Emissions
@@ -239,7 +239,7 @@ difference between market value out and actual out offered by most instant
 exchangers while the protocol near-exclusively offers specific functionality.
 
 Half of the fees are left in the liquidity pool, effectively being distributed
-to LPs, while the other half are burnt.
+to LPs, while the other half are burned.
 
 The intention here is to further reward all parties as usage increases. While
 burning SRI presumably increases the value of all remaining SRI, this may be
@@ -249,7 +249,7 @@ benefactor to such a scheme. This is why the explicit distribution exists.
 
 Validators are presumed to represent a majority of the network's SRI, and are
 entirely denominated in SRI, hence why burning SRI alone is considered
-sufficient for them. Additional, in the pre-Economic Security era, burning SRI
+sufficient for them. Additionally, in the pre-economic security era, burning SRI
 within the pools reduces the distance to economic security.
 
 ## Social Policy
