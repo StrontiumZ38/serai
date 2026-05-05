@@ -19,7 +19,7 @@ conclusion will SRI start being distributed.
 
 After the Genesis era, the network enters the ["Pre-economic security" era](/docs/pre.md).
 
-## In-depth
+## In-depth Information
 
 At genesis, a set of genesis nodes (presumably sufficiently
 trusted community leaders) will start the network. These genesis nodes will perform a DKG and publish the initial
