@@ -52,7 +52,7 @@ proportionately, however. This is accepted as an oddity.
 
 Genesis is now complete. Allocating stake and swaps become available.
 
-## Pre-economic Security
+## Pre-Economic Security
 
 ### Liquidity Providers
 
@@ -147,7 +147,7 @@ validator set, which does not have a literal evaluation of
 `DISTANCE_TO_ECONOMIC_SECURITY` available, `SERAI_VALIDATORS_STAKE_DESIRED` is
 used as the value required to be considered economically secure.
 
-## Post-economic Security
+## Post-Economic Security
 
 ### Liquidity Providers
 
