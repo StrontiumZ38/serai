@@ -17,7 +17,7 @@ attract the liquidity necessary to facilitate swaps. This period will last for
 30 days and will let anyone add liquidity to the protocol. Only with its
 conclusion will SRI start being distributed.
 
-After the Genesis era, the network enters the ["Pre-economic security" era](/docs/pre.md).
+After the Genesis era, the network enters the ["Pre-Economic Security" era](/docs/pre.md).
 
 ## In-depth Information
 
