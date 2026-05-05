@@ -15,7 +15,7 @@ the entirety of Notices and Disclaimers should be considered applicable.
 The post-economic security era is the 'normal' state of operations for Serai. This state, which is only changed to once economic
 security is reached, is the final state for the protocol's economics (barring future upgrades to the protocol).
 
-As the post-economic security era represents everything beyond the [Genesis era](/docs/genesis.md) and [Pre-economic security era](/docs/pre.md), it can be expected
+As the post-economic security era represents everything beyond the [Genesis Era](/docs/genesis.md) and [Pre-Economic Security Era](/docs/pre.md), it can be expected
 that the majority of Serai's operational existence takes place in this state. Rules for the post-economic era for liquidity provision,
 the addition of coins, fee burning, reward distribution, and emissions are therefore expected to apply beyond Serai reaching
 economic security. 
