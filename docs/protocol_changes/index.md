@@ -6,7 +6,7 @@ nav_order: 5
 
 # Protocol Changes
 
-Note that [Notices and Disclaimers](/NOTICES-AND-DISCLAIMERS.md) apply to the following.
+> Note that [Notices and Disclaimers](/NOTICES-AND-DISCLAIMERS.md) apply to the following.
 While guidance to the most relevant clauses can be found within the provided information,
 the entirety of Notices and Disclaimers should be considered applicable. 
 
