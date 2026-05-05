@@ -72,4 +72,4 @@ and general supply and demand factors may vary at any given time.
 
 Arbitrage is a practice in which discrepencies in values across distinct markets at a given time are capitalized upon for
 a profit. While strictly independent from Serai and its governing codebase, this form of market pressure
-can be expected to aid in the regulation of supply and demand for external coins within Serai's network.
+can be expected to aid in the regulation of supply and demand for external coins within Serai's network (see [Notices and Disclaimers §6](/NOTICES-AND-DISCLAIMERS.md)).
