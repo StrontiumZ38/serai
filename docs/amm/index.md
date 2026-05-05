@@ -6,6 +6,10 @@ nav_order: 2
 
 # Automated Market Makers
 
+> Note that [Notices and Disclaimers](/NOTICES-AND-DISCLAIMERS.md) apply to the following.
+While guidance to the most relevant clauses can be found within the provided information,
+the entirety of Notices and Disclaimers should be considered applicable. 
+
 ## Basic Overview
 
 Automated Market Makers (AMMs) are programs that allow users to swap digital coins
