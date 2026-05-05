@@ -1,5 +1,9 @@
 # Economics
 
+> Note that [Notices and Disclaimers](/NOTICES-AND-DISCLAIMERS.md) apply to the following.
+While guidance to the most relevant clauses can be found within the provided information,
+the entirety of Notices and Disclaimers should be considered applicable. 
+
 The economics of the Serai codebase are delineated into two different eras:
 
 1) Pre-economic security
