@@ -1,7 +1,8 @@
 # Notices and Disclaimers
 
-This notices and disclaimers document pertains specifically to the Serai documentation found on this website. All license information for
-the Serai software can be found in the [GitHub repository](https://github.com/serai-dex).
+This notices and disclaimers document pertains specifically to the Serai documentation found on this website.
+Unless expressly stated, all information contained herein should be considered as applicable to Serai documentation.
+All license information for the Serai software can be found in the [GitHub repository](https://github.com/serai-dex).
 
 ## 1. Open Source Licensing
 Serai is open source software distributed under the license(s) identified in
