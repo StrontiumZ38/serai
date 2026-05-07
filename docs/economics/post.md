@@ -7,7 +7,7 @@ parent: Economics
 # Post-Economic Security Era
 
 > Note that [Notices and Disclaimers](/NOTICES-AND-DISCLAIMERS.md) apply to the following.
-While guidance to the most relevant clauses can be found within the provided information,
+While guidance to the most relevant clauses may be found within the provided information,
 the entirety of Notices and Disclaimers should be considered applicable. 
 
 ## Basic Overview
