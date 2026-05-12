@@ -7,14 +7,18 @@ parent: Infrastructure
 
 # Message Queue
 
+> Note that [Notices and Disclaimers](/NOTICES-AND-DISCLAIMERS.md) apply to the following.
+While guidance to the most relevant clauses may be found within the provided information,
+the entirety of Notices and Disclaimers should be considered applicable. 
+
 The Message Queue is a microservice to authenticate and relay messages between
 services. It offers just three functions:
 
-1) Queue a message.
+1) Queue a message
 
-2) Receive the next message.
+2) Receive the next message
 
-3) Acknowledge a message, removing it from the queue.
+3) Acknowledge a message, removing it from the queue
 
 This ensures messages are delivered between services, with their order
 preserved. This also ensures that if a service reboots while handling a message,
