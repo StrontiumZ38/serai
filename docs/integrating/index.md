@@ -18,7 +18,7 @@ Code implementation may or may not be directly handled by the Serai developers, 
 a consensus threshold is required for Serai to operate, validators will need to choose to
 operationally support any post-launch integration. Factors such as hardware requirements and economic
 feasibility are likely factors in determination of whether a specific integration will gain
-validator support.
+validator support. See [Notices and Disclaimers §6](/NOTICES-AND-DISCLAIMERS.md).
 
 ## Code Contribution
 
