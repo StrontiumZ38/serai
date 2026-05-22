@@ -10,6 +10,10 @@ may become out-of-date (as Serai is an evolving protocol yet to launch) or have 
 
 # Serai
 
+> Note that [Notices and Disclaimers](/NOTICES-AND-DISCLAIMERS.md) apply to the following.
+While guidance to the most relevant clauses may be found within the provided information,
+the entirety of Notices and Disclaimers should be considered applicable. 
+
 Serai is a fairly-launched, cross-chain decentralized exchange (DEX), integrating
 Bitcoin (BTC), Ethereum (ETH, DAI), and Monero (XMR).
 
