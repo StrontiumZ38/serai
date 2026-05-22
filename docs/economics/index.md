@@ -7,6 +7,10 @@ has_children: true
 
 # Economics
 
+> Note that [Notices and Disclaimers](/NOTICES-AND-DISCLAIMERS.md) apply to the following.
+While guidance to the most relevant clauses may be found within the provided information,
+the entirety of Notices and Disclaimers should be considered applicable.
+
 Serai's economics change depending on which of three eras is currently
 occurring.
 
@@ -43,3 +47,6 @@ external coins for their stake.
 Having achieved economic security, the protocol changes its economics one last
 time (barring future upgrades to the protocol) to a 'normal' state of
 operations.
+
+More in-depth information on Serai's economic eras can be found in the dedicated 
+document for each.
