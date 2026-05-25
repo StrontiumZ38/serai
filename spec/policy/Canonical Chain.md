@@ -6,7 +6,7 @@ document intends to establish soft, non-binding policy, in the hopes it'll guide
 most discussions on the matter.
 
 The canonical chain is the chain Serai follows and honors transactions on. Serai
-does not guarantee operations availability nor integrity on any chains other
+does neither guarantees operations availability nor integrity on any chains other
 than the canonical chain. Which chain is considered canonical is dependent on
 several factors.
 
@@ -14,19 +14,19 @@ several factors.
 
 Serai finalizes blocks from external networks onto itself. Once a block is
 finalized, it is considered irreversible. Accordingly, the primary tenet
-regarding what chain Serai will honor is the chain Serai has finalized. We can
+regarding what chain Serai will honor is that the chain Serai has finalized. We can
 only assume the integrity of our coins on that chain.
 
 ### Node Software
 
-Only node software which passes a quality threshold and actively identifies as
+Only node software that passes a quality threshold and actively identifies as
 belonging to an external network's protocol should be run. Never should a
 transformative node (a node trying to create a new network from an existing one)
 be run in place of a node actually for the external network. Beyond active
 identification, it must have community recognition as belonging.
 
 If the majority of a community actively identifying as the network stands behind
-a hard fork, it should not be considered as a new network yet the next step of
+a hard fork, it should not be considered as a new network but the next step of
 the existing one. If a hard fork breaks Serai's integrity, it should not be
 supported.
 
@@ -37,7 +37,7 @@ vulnerabilities to any specific node's faults.
 
 Over time, various networks have rolled back in response to exploits. A rollback
 should undergo the same scrutiny as a hard fork. If the rollback breaks Serai's
-integrity, yet someone identifying as from the project offers to restore
+integrity, but someone identifying themself as from the project offers to restore
 integrity out-of-band, integrity is considered kept so long as the offer is
 followed through on.
 
