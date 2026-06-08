@@ -1,6 +1,6 @@
 # Serai Node
 
-The Serai node is the principal piece of software for connecting to,
+The Serai node is the principle piece of software for connecting to,
 participating in, and validating the Serai blockchain. It forms a peer-to-peer
 network with other Serai nodes in order to download the blockchain and
 broadcast new events, such as transactions or authored blocks.
